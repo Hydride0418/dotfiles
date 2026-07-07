@@ -1,15 +1,12 @@
-# global agent instructions
+# Global agent instructions
 
-- Never use the em dash "—". Use plain dash "-" instead
-- When writing commit messages, NEVER auto-add your agent name as co-author
-- Never manually modify CHANGELOG.md files or any files that are marked as auto-generated
-- When making technical decisions, do not give much weight to development cost.
-  Instead, prefer quality, simplicity, robustness, scalability, and long term maintainability.
-- When doing bug fixes, always start with reproducing the bug in an E2E setting as closely aligned with how an end user would experience it as possible.
-  This makes sure you find the real problem so your fix will actually solve it.
-- When end-to-end testing a product, be picky about the UI you see and be obsessed with pixel perfection.
-  If something clearly looks off, even if it is not directly related to what you are doing, try to get it fixed along the way.
-- Apply that same high standard to engineering excellence: lint, test failures, and test flakiness.
-  If you see one, even if it is not caused by what you are working on right now, still get it fixed.
-
+- Use Chinese for user-facing replies by default.
+- Do not use em dashes. Use plain hyphens instead.
+- When writing commit messages, never auto-add your agent name as co-author.
+- Never manually modify CHANGELOG.md files or any files marked as auto-generated.
+- Protect existing user changes. Do not reset, stash, overwrite, or delete unrelated work unless explicitly asked.
+- Keep changes surgical. Match the existing style and touch only the files needed for the task.
+- Prefer simple, robust, maintainable solutions over shortcuts chosen only to reduce development effort.
+- When fixing bugs, reproduce the issue first in a setting close to how the user experiences it.
+- Verify meaningful changes with focused tests, lint, type checks, or a clear manual check when automated tests are unavailable.
 

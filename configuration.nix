@@ -9,7 +9,7 @@
 
   system.primaryUser = user;
   users.users.${user} = {
-    home = "/Users/${user}";
+    home = "/Users/bytedance";
   };
   system.stateVersion = 6;
   system.defaults = {
@@ -31,7 +31,7 @@
   };
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";  # remove anything not listed here
+    onActivation.cleanup = "none";  # first switch: keep existing Homebrew installs
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
     brews = [

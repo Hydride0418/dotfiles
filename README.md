@@ -21,7 +21,7 @@ Running the switch builds:
 - Shell (zsh, aliases, starship prompt)
 - Editor (Neovim config)
 - Terminal (WezTerm config)
-- Agent configs (Claude, Codex, opencode all share one AGENTS.md)
+- Claude settings, without replacing existing local agent instruction files
 
 ## Prerequisites
 
@@ -84,8 +84,8 @@ No separate build-and-copy step.
 This repo is mine.
 If you clone it, review these before you run `bootstrap.sh`:
 
-- **Username**: run `./bootstrap.sh` (it detects your macOS username and offers to set it) OR change the single `user = "kunchen"` line in `flake.nix`.
-  Everything else (`configuration.nix`, `home.nix`, home directory paths) is threaded from that one variable.
+- **Username**: this copy is configured for `user = "yangjingping"` in `flake.nix`.
+  The home directory is explicitly set to `/Users/bytedance` in `configuration.nix` and `home.nix`, because this Mac's short username and home directory name differ.
 - **Host label** `"mac"`, in three places: `flake.nix` (the `darwinConfigurations."mac"` name), `rebuild.sh:5` (the `#mac` at the end of the flake reference), and `bootstrap.sh`'s first-switch command (also `#mac`).
   All three have to match.
 - **CPU architecture**, `hostPlatform` in `configuration.nix` (see Prerequisites above).
@@ -104,10 +104,9 @@ programs.git = {
 };
 ```
 
-**Homebrew cleanup warning:** `configuration.nix` sets `homebrew.onActivation.cleanup = "zap"`.
-That means every time you switch, Homebrew removes any package or cask on your machine that isn't listed in the `brews` and `casks` arrays in `configuration.nix`.
-If you already have Homebrew stuff installed that isn't in that list, the first switch will uninstall it.
-Read through `brews` and `casks` before you run `bootstrap.sh` or `rebuild.sh` for the first time, and add anything you want to keep.
+**Homebrew cleanup warning:** this copy starts with `homebrew.onActivation.cleanup = "none"`.
+That keeps existing Homebrew packages and casks on the first switch, which is safer on a Mac that already has software installed.
+After everything you want to keep is listed in the `brews` and `casks` arrays in `configuration.nix`, you can choose whether to tighten this later.
 
 **About `herdr`:** it's in the `brews` list.
 It's a real public Homebrew formula (`brew info herdr` finds it in homebrew-core, no tap needed), so it will install fine.
@@ -115,10 +114,8 @@ If you don't use it, just remove it from `brews` in your copy.
 
 **Heads-up:**
 
-- `home/AGENTS.md` is my personal agent policy, and `home.nix` installs it for Claude, Codex, and opencode.
-  If you clone this repo, you'd silently inherit my agent instructions - edit or delete `home/AGENTS.md` if you don't want that.
-- The `cc` and `co` shell aliases in `home.nix` are high-agency shortcuts: `claude --dangerously-skip-permissions` and `codex --full-auto`.
-  They're convenient for me, but know what they do before you use them.
+- `home/AGENTS.md` is kept as an optional template only. This copy does not install it over local Claude, Codex, or opencode instruction files.
+- The `cc` and `co` shell aliases in `home.nix` are conservative shortcuts for `claude` and `codex`.
 
 ## Repo tour
 
@@ -128,7 +125,7 @@ If you don't use it, just remove it from `brews` in your copy.
 - `home.nix` - user-level config: shell, packages, prompt, and the symlinks described below.
 - `rebuild.sh` - re-applies the config after the first switch.
   Run this every time you make a change.
-- `home/` - the actual config files that get symlinked into place (Neovim, WezTerm, herdr, Claude settings, the shared `AGENTS.md`).
+- `home/` - the actual config files that get symlinked into place (Neovim, WezTerm, herdr, Claude settings). `home/AGENTS.md` is an optional template and is not installed automatically.
 
 ## How the symlinks work
 
