@@ -20,7 +20,23 @@ in
     nerd-fonts.hack
   ];
   fonts.fontconfig.enable = true;
-  home.sessionVariables.EDITOR = "nvim";
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.npm-global/bin"
+    "${config.home.homeDirectory}/.local/bin"
+    "${config.home.homeDirectory}/go/bin"
+    "${config.home.homeDirectory}/flutter/bin"
+    "${config.home.homeDirectory}/.pub-cache/bin"
+    "${config.home.homeDirectory}/.larklink/bin"
+    "${config.home.homeDirectory}/.bun/bin"
+    "/usr/local/go/bin"
+    "/opt/homebrew/bin"
+  ];
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    GOPATH = "${config.home.homeDirectory}/go";
+    GOROOT = "/usr/local/go";
+    BUN_INSTALL = "${config.home.homeDirectory}/.bun";
+  };
 
   programs.zsh = {
     enable = true;
@@ -60,6 +76,4 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
   home.file.".config/herdr".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
-  home.file.".claude/settings.json".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
 }

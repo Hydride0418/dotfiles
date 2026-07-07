@@ -21,7 +21,7 @@ Running the switch builds:
 - Shell (zsh, aliases, starship prompt)
 - Editor (Neovim config)
 - Terminal (WezTerm config)
-- Claude settings, without replacing existing local agent instruction files
+- Dotfile symlinks for Neovim, WezTerm, and herdr
 
 ## Prerequisites
 
@@ -84,8 +84,8 @@ No separate build-and-copy step.
 This repo is mine.
 If you clone it, review these before you run `bootstrap.sh`:
 
-- **Username**: this copy is configured for `user = "yangjingping"` in `flake.nix`.
-  The home directory is explicitly set to `/Users/bytedance` in `configuration.nix` and `home.nix`, because this Mac's short username and home directory name differ.
+- **Username**: this copy is configured for `user = "bytedance"` in `flake.nix`.
+  The home directory is explicitly set to `/Users/bytedance` in `configuration.nix` and `home.nix`.
 - **Host label** `"mac"`, in three places: `flake.nix` (the `darwinConfigurations."mac"` name), `rebuild.sh:5` (the `#mac` at the end of the flake reference), and `bootstrap.sh`'s first-switch command (also `#mac`).
   All three have to match.
 - **CPU architecture**, `hostPlatform` in `configuration.nix` (see Prerequisites above).
@@ -115,6 +115,7 @@ If you don't use it, just remove it from `brews` in your copy.
 **Heads-up:**
 
 - `home/AGENTS.md` is kept as an optional template only. This copy does not install it over local Claude, Codex, or opencode instruction files.
+- `home/.claude/settings.json` is kept in the repo as an optional template only. This copy does not install it over local Claude settings.
 - The `cc` and `co` shell aliases in `home.nix` are conservative shortcuts for `claude` and `codex`.
 
 ## Repo tour
@@ -125,7 +126,7 @@ If you don't use it, just remove it from `brews` in your copy.
 - `home.nix` - user-level config: shell, packages, prompt, and the symlinks described below.
 - `rebuild.sh` - re-applies the config after the first switch.
   Run this every time you make a change.
-- `home/` - the actual config files that get symlinked into place (Neovim, WezTerm, herdr, Claude settings). `home/AGENTS.md` is an optional template and is not installed automatically.
+- `home/` - the actual config files that get symlinked into place (Neovim, WezTerm, herdr). `home/AGENTS.md` and `home/.claude/settings.json` are optional templates and are not installed automatically.
 
 ## How the symlinks work
 
