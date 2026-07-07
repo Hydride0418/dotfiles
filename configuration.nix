@@ -27,7 +27,7 @@
   };
   system.activationScripts.postActivation.text = ''
     # Keep local UI choices that nix-darwin does not fully model as first-class defaults.
-    launchctl asuser "$(id -u -- ${user})" sudo --user=${user} -- defaults delete -g AppleInterfaceStyle || true
+    launchctl asuser "$(id -u -- ${user})" sudo --user=${user} -- defaults delete -g AppleInterfaceStyle >/dev/null 2>&1 || true
     launchctl asuser "$(id -u -- ${user})" sudo --user=${user} -- defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
     killall -qu ${user} cfprefsd || true
     killall -qu ${user} SystemUIServer || true
