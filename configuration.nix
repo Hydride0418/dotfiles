@@ -1,4 +1,4 @@
-{ user, ... }:
+{ pkgs, user, ... }:
 
 {
   # Determinate already manages the Nix daemon, so nix-darwin shouldn't.
@@ -6,6 +6,10 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = "aarch64-darwin"; # use x86_64-darwin for Intel CPU
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.hack
+  ];
 
   system.primaryUser = user;
   users.users.${user} = {

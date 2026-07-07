@@ -16,8 +16,6 @@ in
     jq        # json on the command line
     lazygit
     neovim
-    # the font everything renders in
-    nerd-fonts.hack
   ];
   fonts.fontconfig.enable = true;
   home.sessionPath = [
@@ -76,4 +74,6 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
   home.file.".config/herdr".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
+  home.file.".local/share/fonts/hack-nerd-font".source =
+    "${pkgs.nerd-fonts.hack}/share/fonts/truetype/NerdFonts/Hack";
 }
