@@ -26,7 +26,7 @@
     };
     dock.autohide = true;
     finder.FXPreferredViewStyle = "Nlsv";  # list view by default
-    finder.CreateDesktop = false;          # clean desktop
+    finder.CreateDesktop = true;           # keep custom desktop wallpaper visible
     trackpad.Clicking = true;              # tap to click
   };
   system.activationScripts.postActivation.text = ''
