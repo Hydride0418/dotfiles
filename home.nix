@@ -189,6 +189,8 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
   home.file.".config/herdr".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
+  home.file."Library/Application Support/Alfred/Alfred.alfredpreferences/workflows/user.workflow.codex.app-switcher/info.plist".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/alfred/workflows/user.workflow.codex.app-switcher/info.plist";
   home.file.".local/share/fonts/hack-nerd-font".source =
     "${pkgs.nerd-fonts.hack}/share/fonts/truetype/NerdFonts/Hack";
 }

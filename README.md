@@ -21,7 +21,7 @@ Running the switch builds:
 - Shell (zsh, aliases, starship prompt)
 - Editor (Neovim config)
 - Terminal (WezTerm config)
-- Dotfile symlinks for Neovim, WezTerm, and herdr
+- Dotfile symlinks for Neovim, WezTerm, herdr, and an Alfred app switcher workflow
 
 ## Prerequisites
 
@@ -126,7 +126,7 @@ If you don't use it, just remove it from `brews` in your copy.
 - `home.nix` - user-level config: shell, packages, prompt, and the symlinks described below.
 - `rebuild.sh` - re-applies the config after the first switch.
   Run this every time you make a change.
-- `home/` - the actual config files that get symlinked into place (Neovim, WezTerm, herdr). `home/AGENTS.md` and `home/.claude/settings.json` are optional templates and are not installed automatically.
+- `home/` - the actual config files that get symlinked into place (Neovim, WezTerm, herdr, Alfred app switcher). `home/AGENTS.md` and `home/.claude/settings.json` are optional templates and are not installed automatically.
 
 ## How the symlinks work
 
