@@ -17,11 +17,11 @@ Running the switch builds:
 
 - System settings (dark mode, key repeat, dock, Finder, trackpad)
 - Homebrew apps (casks and CLI tools)
-- Nix user packages (ripgrep, fd, fzf, jq, lazygit, Neovim, Hack Nerd Font)
+- Nix user packages (ripgrep, fd, fzf, glow, jq, lazygit, Neovim, Hack Nerd Font)
 - Shell (zsh, aliases, starship prompt)
 - Editor (Neovim config)
 - Terminal (WezTerm config)
-- Dotfile symlinks for Neovim, WezTerm, herdr, and an Alfred app switcher workflow
+- Dotfile symlinks for Neovim, WezTerm, herdr, Glow, and an Alfred app switcher workflow
 
 ## Prerequisites
 
@@ -126,7 +126,7 @@ If you don't use it, just remove it from `brews` in your copy.
 - `home.nix` - user-level config: shell, packages, prompt, and the symlinks described below.
 - `rebuild.sh` - re-applies the config after the first switch.
   Run this every time you make a change.
-- `home/` - the actual config files that get symlinked into place (Neovim, WezTerm, herdr, Alfred app switcher). `home/AGENTS.md` and `home/.claude/settings.json` are optional templates and are not installed automatically.
+- `home/` - the actual config files that get symlinked into place (Neovim, WezTerm, herdr, Glow, Alfred app switcher). `home/AGENTS.md` and `home/.claude/settings.json` are optional templates and are not installed automatically.
 
 ## How the symlinks work
 

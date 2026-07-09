@@ -13,6 +13,7 @@ in
     ripgrep   # fast search
     fd        # fast find
     fzf       # fuzzy finder
+    glow      # markdown viewer
     jq        # json on the command line
     lazygit
     neovim
@@ -189,6 +190,8 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
   home.file.".config/herdr".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
+  home.file."Library/Preferences/glow/glow.yml".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/Library/Preferences/glow/glow.yml";
   home.file."Library/Application Support/Alfred/Alfred.alfredpreferences/workflows/user.workflow.codex.app-switcher/info.plist".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/alfred/workflows/user.workflow.codex.app-switcher/info.plist";
   home.file.".local/share/fonts/hack-nerd-font".source =
