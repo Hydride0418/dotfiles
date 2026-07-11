@@ -16,6 +16,7 @@ config.window_decorations = "RESIZE"
 config.set_environment_variables = {
   NOSYSZSHRC = "1",
 }
+config.use_ime = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 local local_path = [[(/(?:[-A-Za-z0-9._+@%~=]+/)*[-A-Za-z0-9._+@%~=]+)]]
@@ -38,10 +39,23 @@ wezterm.on("open-uri", function(window, pane, uri)
   end
 
   local url = wezterm.url.parse(uri)
-  local target = url.file_path
-  if not target or target == "" then
+  local file_path = url.file_path
+  if not file_path or file_path == "" then
     return false
   end
+
+  local lower_file_path = file_path:lower()
+  if lower_file_path:match("%.md$") or lower_file_path:match("%.markdown$") then
+    window:perform_action(
+      act.SpawnCommandInNewTab({
+        args = { "/opt/homebrew/bin/glow", "-p", file_path },
+      }),
+      pane
+    )
+    return false
+  end
+
+  local target = file_path
   if url.fragment and url.fragment ~= "" then
     target = target .. ":" .. url.fragment
   end
@@ -97,6 +111,21 @@ config.keys = {
     key = "w",
     mods = "CMD",
     action = act.CloseCurrentPane({ confirm = true }),
+  },
+  {
+    key = "f",
+    mods = "CMD",
+    action = act.Search("CurrentSelectionOrEmptyString"),
+  },
+  {
+    key = "F",
+    mods = "CTRL|SHIFT",
+    action = act.Search("CurrentSelectionOrEmptyString"),
+  },
+  {
+    key = "f",
+    mods = "CTRL|SHIFT",
+    action = act.Search("CurrentSelectionOrEmptyString"),
   },
 }
 
