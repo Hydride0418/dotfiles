@@ -12,6 +12,10 @@
   ];
 
   system.primaryUser = user;
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToEscape = true;
+  };
   users.users.${user} = {
     home = "/Users/bytedance";
   };
